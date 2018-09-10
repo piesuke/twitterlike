@@ -1,0 +1,25 @@
+<!-- <header class="hello-header">
+  <h1>Twitterにようこそ。</h1>
+  <p>「いま」起きていることを見つけよう。</p>
+</header> -->
+
+<!-- header-end -->
+<div class="container left">
+<p>あなたの「好き」をフォローしよう。</p>
+<p>話題のトピックを追いかけましょう。</p>
+<p>Twitterに参加しましょう。</p>
+</div>
+<div class="container right">
+  <h1>「いま」起きていることを見つけよう。</h1>
+  <p>Twitterを始めよう。</p>
+  <div class="row hello-btn-container">
+    <%= button_to "アカウント作成", {:controller => "devise/registrations", :action => "new"}, :method => :get %>
+  </div>
+  <div class="row hello-btn-container">
+    <%= button_to "ログイン", { :controller => "tweets", :action => "index"}, :method => :get %>
+  </div>
+  <div class="logput">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>    
+  </div>
+</div>
+<!-- Button-end -->

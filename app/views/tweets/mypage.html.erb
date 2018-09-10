@@ -1,0 +1,33 @@
+<header class="container tweets-header">
+  <div class="row">
+    <div class="col-sm-4 head">
+   <p class="mypage">ホーム</p><p>モーメント</p><p>通知</p><p>メッセージ</p>
+    </div>
+    <div class="col-sm-4 logo">
+      <img src="/app/aseets/images/Twitter_Logo_Blue.png" alt="">
+    </div>
+    <div class="col-sm-4">
+      <%= button_to "ツイート", {:controller => "tweets", :action => "new"}, :method => :get, :class => "btn btn-success btn-md" %>
+    </div>
+  </div>
+</header>
+<!-- header終わり -->
+<section class="container timeline-container">
+<div class="row">
+  <div class="col-sm-3 user_info">
+  </div>
+    <div class="col-sm-6 timeline_index">
+      <% @tweets.each do |t| %>
+       <div class="tweeet-info">
+         <%=t.user.email %>
+         <br>
+         <%= t.body %>
+         <br>
+         <%=t.created_at %>
+       </div>
+       <% end %>
+    </div>
+  <div class="col-sm-3">
+    </div>
+</div>
+</section>

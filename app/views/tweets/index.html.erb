@@ -1,0 +1,56 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<header class="container tweets-header">
+  <div class="row">
+    <div class="col-sm-4 head">
+   <%= button_to "ホーム", { :controller => "tweets", :action => "mypage"}, :method => :get, :class => "btn btn-warning btn-md" %>
+   <p>モーメント</p><p>通知</p><p>メッセージ</p>
+    </div>
+    <div class="col-sm-4 logo">
+      <img src="/app/aseets/images/Twitter_Logo_Blue.png" alt="">
+    </div>
+    <div class="col-sm-4">
+      <%= button_to "ツイート", {:controller => "tweets", :action => "new"}, :method => :get, :class => "btn btn-success btn-md" %>
+    </div>
+  </div>
+
+
+ <% end %>
+
+</header>
+<!-- header終わり -->
+<section class="container timeline-container">
+<div class="row">
+  <div class="col-sm-3 user_info">
+
+  </div>
+    <div class="col-sm-6 timeline_index">
+
+      <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+　<%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+    　<span class="fa fa-heart like-btn-unlike"></span>
+    <% end %>
+ <% else %>
+ 　<%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+       <span class="fa fa-heart like-btn"></span>
+     <% end %>
+ <% end %>
+      <% @tweets.each do |t| %>
+       <div class="tweeet-info">
+         <%= image_tag(t.user.icon_url, :size => "40x40", :class => "icon") unless current_user.icon_url.blank? %>
+         <p class="tweet_text_container">
+         <%=t.user.email %>
+         <br>
+         <%= t.body %>
+         <br>
+         <%=t.created_at %>
+         </p>
+       </div>
+       <% end %>
+    </div>
+  <div class="col-sm-3">
+    </div>
+</div>
+</section>
